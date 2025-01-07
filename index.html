@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+:root{
+    --a:rgb(161, 126, 222)
+
+}
+
+    html,
+    body {
+        background-color: rgb(80, 69, 100);
+
+
+    }
+
+    table {
+        width: 100%;
+        background-color: #111;
+    }
+
+    table tr th,
+    a {
+        padding: 5px;
+        color: aliceblue;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    details {
+        margin-left: 2vw;
+        border: 1px solid rgb(161, 126, 222);
+        background-color: rgb(45, 12, 105);
+        width: 80vw;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        color: aliceblue;
+        cursor: pointer;
+    }
+
+    iframe textarea {
+        resize: none;
+        width: 90%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: rgb(65, 64, 64);
+        color: rgb(34, 161, 42);
+
+    }
+
+    iframe {
+        width: 100%;
+
+        border: 2px solid black;
+
+    }
+
+    input {
+        width: 70%;
+        padding: 5px;
+        background-color: rgb(114, 78, 182);
+        border: 1px solid rgb(156, 144, 177);
+        color: aliceblue;
+        border: none;
+        cursor: pointer;
+        margin-left: 2vw;
+    }
+
+    .itens button {
+        padding: 5px;
+        background-color: rgb(114, 78, 182);
+        color: aliceblue;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+    }
+
+    b {
+        padding: 5px;
+        background-color: orange;
+        color: #111;
+        border-radius: 5px;
+    }
+
+    h4 {
+        font-weight: lighter;
+        font-family: arial;
+    }
+
+    .lateral {
+        width: 20vw;
+        height: 100%;
+        position: fixed;
+        left: -15vw;
+        top: 0;
+        background-color: rgb(45, 12, 105);
+        color: antiquewhite;
+        transition: all 0.3s ease;
+    }
+
+    .lateral:hover {
+        left: 0;
+    }
+
+    .submenu {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        color: antiquewhite;
+        cursor: pointer;
+        font-size: 1.5vw;
+        padding: 7px 0px;
+    }
+
+    .submenu:hover {
+        background-color: aliceblue;
+        color: rgb(0, 0, 0);
+    }
+
+    .itens {
+        margin-left: 5vw;
+        background-color: rgb(80, 69, 100);
+        padding-bottom: 5vw;
+    }
+</style>
+
+<body>
+    <div class="lateral" id="lateral">
+
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="itens" id="itens">
+        <br>
+        <input id="buscar">
+        <button id="bt_buscar">Buscar</button>
+        <br>
+        <br>
+        <hr>
+        <br>
+    </div>
+</body>
+<script>
+
+
+
+    const menus = [
+        ['C++', 'Titulo C++ 1', 'artigo2 C++'],
+        ['C++', 'Titulo C++ 2', 'artigo2 C++'],
+        ['C++', 'Titulo C++ 3', 'artigo3 C++'],
+
+        ['C#', 'Altura e Largura do Monitor', 'c/telaSize.html'],
+        ['C#', 'Obter a posicao do mouse', 'c/posicaoMouse.html'],
+        ['C#', 'Color Picker', 'c/colorPicker.html'],
+        ['C#', 'Verificar Internet', 'c/VerificarInternet.html'],
+        ['C#', 'Fechar Navegadores', 'c/fecharNavegadores.html'],
+        ['C#', 'Fechar Gerenciador', 'c/fecharGerenciador.html'],
+        ['C#', 'Fechar Menu Executar', 'c/fecharMenuExecutar.html'],
+        ['C#', 'Obter MAC', 'c/getMac.html'],
+        ['C#', 'Obter nome  do PC', 'c/getPcNome.html'],
+        ['C#', 'Data', 'c/getData.html'],
+        ['C#', 'Desligar PC', 'c/desligarPC.html'],
+        ['C#', 'Bloquear Internet', 'c/bloquearInternet.html'],
+        ['C#', 'Virus NicolasCage', 'c/NicolasCage.html'],
+        ['C#', 'Obter todos arquivos de uma pasta', 'c/obterArquivos.html'],
+        ['C#', 'Obter o espaço LIVRE do HD', 'c/hdTotalFreeSpace.html'],
+        ['C#', 'Obter Nome do Processador', 'c/ObterNomeProcessador.html'],
+        ['C#', 'Obter Memoria RAM', 'c/ObterMemoriaRAM.html'],
+        ['C#', 'Obter Info da Rede', 'c/ObterInfoRede.html'],
+        ['C#', 'Obter Versao NETFramework', 'c/VersaoNETFramework.html'],
+        ['C#', 'Obter Placa Mae', 'c/PlacaMae.html'],
+        ['C#', 'Obter Nome do GPU', 'c/NomeGPU.html'],
+        ['C#', 'Obter Memoria de Video', 'c/MemoriaDeVideo.html'],
+        ['C#', 'Obter Versao do Sistema', 'c/VersaoDoSistema.html'],
+        ['C#', 'Obter Tipo do Processador', 'c/TipoProcessador.html'],
+        ['C#', 'Obter DNSHostName', 'c/DNSHostName.html'],
+        ['C#', 'Obter Todos Processos Rodando', 'c/ObterTodosProcessosRodando.html'],
+        ['C#', 'Remove Acentuacao', 'c/RemoveAcentuacao.html'],
+        ['C#', 'Ler Ini', 'c/LerIni.html'],
+        ['C#', 'Puxar Infos da Web', 'c/PuxarInfosAsync.html'],
+        ['C#', 'Simular Teclado', 'c/simularTeclado.html'],
+        ['C#', 'DrawSquare', 'c/DrawSquare.html'],
+        ['C#', 'Selecionar Imagem e Copiar', 'c/SelecionarImagemECopiar.html'],
+        ['C#', 'Joaat Hash', 'c/Joaat.html'],
+        ['C#', 'Tirar Print da Tela', 'c/TirarPrintDaTela.html'],
+        ['C#', 'Alerta usando ShowBalloonTip', 'c/ShowBalloonTip.html'],
+        ['C#', 'Obter Data e Hora', 'c/obterDataHora.html'],
+
+
+        ['PHP', 'Titulo PHP 1', 'artigo1 PHP'],
+        ['PHP', 'Titulo PHP 2', 'artigo2 PHP'],
+        ['PHP', 'Titulo PHP 3', 'artigo3 PHP'],
+
+        ['Lua', 'Array to String', 'lua/arrayToString.html'],
+        ['Lua', 'String to Array', 'lua/stringToArray.html'],
+        ['Lua', 'Ler Arquivo Linha a Linha', 'lua/lerArquivoLinhaALinha.html'],
+        ['Lua', 'Criar Arquivo de LOG', 'lua/log.html'],
+        ['Lua', 'Joaat Hash (Modelo 1)', 'lua/joaat1.html'],
+        ['Lua', 'Joaat Hash (Modelo 2)', 'lua/joaat2.html'],
+        ['Lua', 'Verificar se um arquivo existe', 'lua/arqExiste.html'],
+        ['Lua', 'Ler Arquivo', 'lua/lerArquivo.html'],
+        ['Lua', 'Gravar Arquivo (Sobrescreve por completo o conteudo antigo)', 'lua/gravarArquivo.html'],
+        ['Lua', 'Gravar Arquivo (Adiciona ao conteudo antigo)', 'lua/gravarArquivoAppend.html'],
+        ['Lua', 'Sleep/Wait', 'lua/sleep.html'],
+        ['Lua', 'Renomear Arquivo', 'lua/renomearArquivo.html'],
+        ['Lua', 'Substituir Palavra', 'lua/substituirPalavra.html'],
+        ['Lua', 'Criar Pasta', 'lua/criarPasta.html'],
+        ['Lua', 'Criar Arquivo', 'lua/criarArquivo.html'],
+        ['Lua', 'toUpper', 'lua/toUpper.html'],
+        ['Lua', 'toLower', 'lua/toLower.html'],
+
+        ['JavaScript', 'Joaat Hash', 'js/joaat.html'],
+        ['JavaScript', 'Validar Email', 'js/Validar Email.html'],
+        ['JavaScript', 'Numero Aleatorio (min/max)', 'js/NumeroAleatorio.html'],
+        ['JavaScript', 'Validar Telefone', 'js/ValidarTelefone.html'],
+        ['JavaScript', 'Gerar Senha', 'js/GerarSenha.html'],
+        ['JavaScript', 'Executa quando a pagina estiver 100% carregada', 'js/pageLoadedOnly.html'],
+        ['JavaScript', 'Obtem o Tamanho da Tela', 'js/screenSize.html'],
+        ['JavaScript', 'DarkTheme', 'js/DarkTheme.html'],
+        ['JavaScript', 'LightTheme', 'js/LightTheme.html'],
+        ['JavaScript', 'Gerencia Cookies', 'js/cookies.html'],
+        ['JavaScript', 'Obtem Datas', 'js/data.html'],
+        ['JavaScript', 'Notificação Estilizada', 'js/sexymsg.html'],
+        ['JavaScript', 'Gera Tokens', 'js/tokens.html'],
+        ['JavaScript', 'Verifica Semelhança (Sistema de IA Simples)', 'js/verSemelhanca.html'],
+        ['JavaScript', 'Criptografia e Descriptografia', 'js/cripto.html'],
+
+        ['Sigs', 'Titulo PHP 1', 'artigo1 PHP'],
+        ['Sigs', 'Titulo PHP 2', 'artigo2 PHP'],
+        ['Sigs', 'Titulo PHP 3', 'artigo3 PHP'],
+
+        ['Tutorial', 'Titulo Tutorial 1', 'artigo1 Tutorial'],
+        ['Tutorial', 'Titulo Tutorial 2', 'artigo2 Tutorial'],
+        ['Tutorial', 'Titulo Tutorial 3', 'artigo3 Tutorial'],
+
+        ['BAT', 'Numero Aleatório', 'bat/numAleat.html'],
+        ['BAT', 'Exibir MessageBox', 'bat/msgbox.html'],
+        ['BAT', 'Criar arquivo', 'bat/criarArquivo.html'],
+        ['BAT', 'Criar pasta', 'bat/criarPasta.html'],
+
+        ['Python', 'Joaat Hash', 'python/joaat.html'],
+
+
+    ]
+
+
+
+    menus.sort()
+
+    const link = window.location.href
+    var linguagem = ''
+    var cor = ''
+    var abas = 'C++,C#,PHP,JavaScript,Lua,Sigs,BAT,Tutorial,Python'
+
+    //---------------
+
+    definirCores(link)
+
+
+
+
+
+    //------------------------construcao dos menus------------
+
+
+
+
+    var table = ''
+
+    abas.split(',').forEach(e => {
+        if (e !== '') {
+            table += '<a href="?l=' + e + '"><button class="submenu">' + e + '</button></a>'
+        }
+    });
+
+
+    document.getElementById('lateral').innerHTML += table
+
+
+
+
+
+    //-----------------
+
+    //---------------montagem dos posts---------
+    if (linguagem !== '') {
+        var menu = ''
+        menus.forEach(e => {
+
+            if (e[0] == linguagem) {
+                setTimeout(() => {
+                    const details = document.createElement('details')
+                    const summary = document.createElement('summary')
+                    const iframe = document.createElement('iframe')
+
+
+                    summary.innerHTML = '<b style="background-color:' + cor + '">' + e[0] + '</b>&nbsp;&nbsp;&nbsp;&nbsp;' + e[1]
+                    iframe.src = e[2]
+                    details.innerHTML = '<br>'
+
+                    details.appendChild(summary)
+                    details.appendChild(iframe)
+                    document.getElementById('itens').append(details)
+                }, 100);
+            }
+
+
+
+
+            //if (e[0] == linguagem) {
+            //	menu += '<details><summary><b>' + e[0] + '</b>&nbsp;&nbsp;&nbsp;&nbsp;' + e[1] + '</summary><br><iframe src="' + e[2] + '"></iframe><br></details>'
+            //}
+
+        });
+
+        document.getElementById('itens').innerHTML += menu
+    }
+
+
+
+
+
+    const B = document.querySelectorAll('b')
+    B.forEach(e => {
+        e.style.backgroundColor = cor
+    });
+
+
+
+
+
+    var ct = 0
+    setInterval(() => {
+
+        if (ct < 10) {
+            const frames = document.querySelectorAll('iframe')
+            frames.forEach(e => {
+                e.style.height = e.contentWindow.document.body.scrollHeight + 'px'
+                //e.style.height = '500px' 
+            })
+            ct++
+        }
+
+    }, 1000);
+
+
+
+
+
+    function definirCores(ling) {
+        if (ling.includes('Tutorial')) {
+            linguagem = 'Tutorial'
+            cor = '#74c95d'
+        }
+        if (ling.includes('C++')) {
+            linguagem = 'C++'
+            cor = '#f57777'
+        }
+
+        if (ling.includes('C#')) {
+            linguagem = 'C#'
+            cor = 'rgb(99, 172, 229)'
+        }
+
+        if (ling.includes('PHP')) {
+            linguagem = 'PHP'
+            cor = '#5f87dd'
+        }
+
+        if (ling.includes('JavaScript')) {
+            linguagem = 'JavaScript'
+            cor = '#ffe902'
+        }
+
+        if (ling.includes('Lua')) {
+            linguagem = 'Lua'
+            cor = 'beige'
+        }
+
+        if (ling.includes('Sigs')) {
+            linguagem = 'Sigs'
+            cor = '#cc96ff'
+        }
+        if (ling.includes('BAT')) {
+            linguagem = 'BAT'
+            cor = 'orange'
+        }
+        if (ling.includes('Python')) {
+            linguagem = 'Python'
+            cor = '#5495f1'
+        }
+    }
+
+
+    //pagina inicial
+    if (linguagem == '') {
+
+        const s = `
+<div style="margin-left:3vw;color:white">
+    <h1>Olá!</h1><br>
+    <h4>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Seja bem vindo(a) ao Balde de Lixo, meu depósito de códigos úteis/inúteis que vou reunindo ao longo do tempo, ou fazendo no dia-a-dia. e coloco aqui, pra quando precisar, obter eles facilmente.
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Eles estão divididos em categorias e linguagens, e inclue uma barra de pesquisa, pra facilitar na hora de procurar algo específico.
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        Passe o mouse na barra preta aqui a esquerda, para abrir o menu.
+        <br>
+        <br>
+        Sinta-se a vontade para usar qualquer informação desse depósito
+    </h4>
+</div>
+`
+        document.getElementById('itens').innerHTML += s
+    }
+
+
+
+
+    document.getElementById('bt_buscar').addEventListener('click', () => {
+		const palavra = document.getElementById('buscar').value.toLowerCase()
+
+		const det = document.querySelectorAll('details')
+		det.forEach(e => {
+			e.remove()
+		});
+
+		//------------
+
+		menus.forEach(e => {
+			if (e[1].toLowerCase().includes(palavra)) {
+
+
+
+				const details = document.createElement('details')
+				const summary = document.createElement('summary')
+				const iframe = document.createElement('iframe')
+
+
+				summary.innerHTML = '<b style="background-color:' + cor + '">' + e[0] + '</b>&nbsp;&nbsp;&nbsp;&nbsp;' + e[1]
+				iframe.src = e[2]
+				details.innerHTML = '<br>'
+
+				details.appendChild(summary)
+				details.appendChild(iframe)
+				document.getElementById('itens').append(details)
+			}
+		});
+		//----------
+		const B = document.querySelectorAll('b')
+		B.forEach(e => {
+
+			definirCores(e.textContent)
+
+
+			e.style.backgroundColor = cor
+		});
+	})
+
+
+
+   
+
+</script>
+
+</html>

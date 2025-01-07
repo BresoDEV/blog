@@ -1,0 +1,28 @@
+
+<style>
+    textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+		
+	}
+</style>
+<textarea id="t">
+function joaat(str)
+    local hash = 0
+    for i = 1, #str do
+        local char = str:byte(i)
+        hash = ((hash + char) * 0x01000193) % 2 ^ 32
+    end
+    return string.format("%X", hash)
+end   
+</textarea> 
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height='auto'
+	document.getElementById('t').style.height=(document.getElementById('t').scrollHeight+20)+'px'
+	}, 1000);
+	</script>

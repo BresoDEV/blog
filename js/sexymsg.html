@@ -1,0 +1,49 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	var tops = 10
+    var numMsg = 0
+
+    function mensagem(t, txt,corFundo='rgb(100,200,100)',corLetra='black') {
+        if ((screen.height / 2) > tops) {
+            numMsg++;
+            const placa = document.createElement('div');
+            placa.style.position = 'fixed';
+            placa.style.width = '30vw';
+            placa.style.background = 'linear-gradient(to right,' + corFundo + ',transparent)';
+            placa.style.padding = '1vw';
+            placa.style.paddingRight = '30%';
+            placa.style.borderRadius = '1vw';
+            placa.style.color =corLetra ;
+            placa.style.fontFamily = 'arial';
+            placa.style.fontWeight = 'bolder';
+            placa.style.left = '2vw';
+            placa.style.fontSize = '80%';
+            placa.innerHTML = t + '<br>' + txt;
+            document.body.appendChild(placa);
+            placa.style.top = tops + 'px';
+            const topBackup = tops + 10;
+            tops = (tops + 10) + placa.offsetHeight;
+            setTimeout(() => {
+                placa.remove();
+                tops = topBackup;
+                numMsg--;
+            }, 3000);
+        }
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

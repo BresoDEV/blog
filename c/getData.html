@@ -1,0 +1,49 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static string getData()
+    {
+        string dia;
+        if (DateTime.Now.Day <= 9)
+            dia = "[0" + DateTime.Now.Day.ToString() + "/";
+        else
+            dia = "[" + DateTime.Now.Day.ToString() + "/";
+        string mes = DateTime.Now.Month.ToString();
+        if (Convert.ToInt32(mes) <= 9)
+            mes = "0" + mes + "/";
+        else
+            mes = mes + "/";
+        string ano = DateTime.Now.Year.ToString() + " - ";
+        string hora = DateTime.Now.Hour.ToString();
+        if (DateTime.Now.Hour <= 9)
+            hora = "0" + DateTime.Now.Hour.ToString() + ":";
+        else
+            hora = DateTime.Now.Hour.ToString() + ":";
+        string min = DateTime.Now.Minute.ToString() + ":";
+        if (DateTime.Now.Minute <= 9)
+            min = "0" + DateTime.Now.Minute.ToString() + ":";
+        else
+            min = DateTime.Now.Minute.ToString() + ":";
+        string seg = DateTime.Now.Second.ToString() + "] = ";
+        if (DateTime.Now.Second <= 9)
+            seg = "0" + DateTime.Now.Second.ToString() + "] = ";
+        else
+            seg = DateTime.Now.Second.ToString() + "] = ";
+        return dia + mes + ano + hora + min + seg;
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'getData carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

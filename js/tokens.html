@@ -1,0 +1,54 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	function gerarToken(fator) {
+		var s = ''
+		for (let i = 0x64; i < Math.floor(Math.random() * 0x2BC) + 0xC8; i++) {
+		  var aaa = Math.floor(Math.random() * 0x2BC) + 0xC8
+		  for (let j = 0x64; j < aaa; j++) {
+			var bbb = Math.floor(Math.random() * 0x2BC) + 0xC8
+			for (let k = 0x64; k < bbb; k++) {
+			  var v = i + '' + j + '' + k + ''
+			  if (parseInt(v) % fator === 0) {
+				s += parseInt(v)*2 + ', '
+			  } 
+			}
+		  }
+		}
+		//s)
+	  }
+	
+	
+	  function validarToken(token, fator) {
+		token = (parseInt(token/2)) + ''
+		var a = parseInt(token[0] + token[1] + token[2])
+		var b = parseInt(token[3] + token[4] + token[5])
+		var c = parseInt(token[6] + token[7] + token[8])
+		if (parseInt(a + '' + b + '' + c) % fator === 0) { return true } else { return false }
+	  }
+	
+	
+	
+	  gerarToken(1234)
+	
+	
+	  if (validarToken(206736956, 1234))
+		//'si')
+	  else
+		//'no')
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

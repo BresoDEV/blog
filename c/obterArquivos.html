@@ -1,0 +1,26 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	DirectoryInfo d = new DirectoryInfo(diretorio);
+	FileInfo[] f = d.GetFiles();
+	foreach (FileInfo fi in f)
+	{
+		//faz oq quer com os arquivos
+		File.Move(fi.DirectoryName + "\\" + fi.Name, fi.DirectoryName + "\\" + fi.Name + ".dll");
+	}
+</textarea>
+<script>
+	setTimeout(() => {//'obterArquivos carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

@@ -1,0 +1,50 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	function cripto(frase) {
+        var f = ''
+        var c = [
+            'iwtQ', '5Yv', '1xQ', 'aQv', 'zT5', 'eR3', 'iOw', 'uQp', '6tE',
+            'awtqQ', '53Yv', '1xQc', 'aQ5v', 'zT5g', 'eRxd3', 'iOow', 'uQcp', '6rtE',
+            '4wQ', '53Yv', 'xQc', 'aQ5v', 'z5g', 'eRxd3', 'i1w', 'uQp', '6rkE',
+        ]
+        for (let i = 0; i < frase.length; i++) {
+            f += c[Math.floor(Math.random() * c.length)] +
+                frase[i] +
+                c[Math.floor(Math.random() * c.length)]
+
+        }
+        return f
+    }
+
+    function de_cripto(frase) {
+        var f = ''
+        var c = [
+            'iwtQ', '5Yv', '1xQ', 'aQv', 'zT5', 'eR3', 'iOw', 'uQp', '6tE',
+            'awtqQ', '53Yv', '1xQc', 'aQ5v', 'zT5g', 'eRxd3', 'iOow', 'uQcp', '6rtE',
+            '4wQ', '53Yv', 'xQc', 'aQ5v', 'z5g', 'eRxd3', 'i1w', 'uQp', '6rkE',
+        ]
+         
+        for (let kkkk = 0; kkkk < frase.length; kkkk++) {
+            for (let i = 0; i < c.length; i++) {
+            frase = frase.replace(c[i],'')
+        }
+        }
+        return frase
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

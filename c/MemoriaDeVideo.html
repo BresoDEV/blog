@@ -1,0 +1,34 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static string MemoriaDeVideo()
+    {
+        string a = "";
+        try
+        {
+            var query = new ObjectQuery("SELECT * FROM Win32_VideoController");
+            var searcher = new ManagementObjectSearcher(query);
+            foreach (ManagementObject gpu in searcher.Get())
+            {
+                a = gpu["AdapterRAM"].ToString();
+            }
+            return "Memoria de Video:" + a;
+        }
+        catch (Exception e) { return "Memoria de Video:" + a; }
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'MemoriaDeVideo carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

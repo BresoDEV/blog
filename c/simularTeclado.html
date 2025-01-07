@@ -1,0 +1,44 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public class Teclado
+    {
+        public static void CtrlC()
+        {
+            SendKeys.SendWait("^c");
+        }
+        public static void CtrlV()
+        {
+            SendKeys.SendWait("^v");
+        }
+
+        public static void Enter()
+        {
+            SendKeys.SendWait("{ENTER}");
+        }
+        public static void F5()
+        {
+            SendKeys.SendWait("{F5}");
+        }
+
+        public static void Escrever(string texto)
+        {
+            SendKeys.SendWait(texto);
+        }
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'simularTeclado carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

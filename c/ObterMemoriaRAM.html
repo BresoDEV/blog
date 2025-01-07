@@ -1,0 +1,34 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static string ObterMemoriaRAM()
+    {
+        string a = "";
+        try
+        {
+            var query = new ObjectQuery("SELECT * FROM Win32_ComputerSystem");
+            var searcher = new ManagementObjectSearcher(query);
+            foreach (ManagementObject info in searcher.Get())
+            {
+                a = Convert.ToString(info["TotalPhysicalMemory"]);
+            }
+            return "<br>Memoria RAM: " + a;
+        }
+        catch (Exception e) { return "<br>Memoria RAM: " + a; }
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'ObterMemoriaRAM carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

@@ -1,0 +1,37 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static string Joaat(string key)
+    {
+        uint hash = 0;
+
+        foreach (char c in key)
+        {
+            hash += (uint)c;          // Adiciona o valor ASCII do caractere
+            hash += (hash << 10);     // Desloca o hash para a esquerda
+            hash ^= (hash >> 6);      // Desloca o hash para a direita e faz XOR
+        }
+
+        hash += (hash << 3);          // Desloca o hash para a esquerda
+        hash ^= (hash >> 11);         // Desloca o hash para a direita e faz XOR
+        hash += (hash << 15);         // Desloca o hash para a esquerda
+
+        // Converte o hash para hexadecimal
+        return "0x"+hash.ToString("X8"); // Formato 8 caracteres
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'Joaat carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

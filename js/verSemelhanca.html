@@ -1,0 +1,37 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	var criatividade = 84.0
+    const pergunta = 'quem inventou a televisão?'
+    const palavras = 'quem inventou criou televisão tv'
+
+    if (verSemelhanca(pergunta, palavras)) {
+        document.write('<p>Fulano de tal</p>')
+    } else {
+        document.write('<p>Nao entendi</p>')
+    }
+
+    function verSemelhanca(c, d) {
+        var a = [0x0, 0x0, 0x0, 0x0, c.split(' '), c.split('')]
+        a[0x4].forEach(e => { if (d.includes(e)) a[0x0]++; a[0x2]++ });
+        a[0x5].forEach(e => { if (d.includes(e)) a[0x1]++; a[0x3]++ });
+        //parseInt((((a[0x0] + a[0x1]) / (a[0x3] + a[0x2])) * 0x64)))
+        return (criatividade <= parseInt((((a[0x0] + a[0x1]) / (a[0x3] + a[0x2])) * 0x64)))
+    }
+
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

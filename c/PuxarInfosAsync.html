@@ -1,0 +1,44 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static async Task PuxarInfosAsync()
+	{
+		using (var client = new HttpClient())
+		{
+			var response = await client.GetAsync(f.Site + "init.php?MAC=" + f.getMac() + "&IP=Funcao_Inativa&USUARIO=" + f.getPcNome());
+
+			// verifica se a resposta foi bem-sucedida (código 200-299)
+			if (response.IsSuccessStatusCode)
+			{
+				var content = await response.Content.ReadAsStringAsync();
+
+				// divide o conteúdo em linhas
+				var lines = content.Split(new[] { "<br/>" }, StringSplitOptions.None);
+
+				// cria uma lista para armazenar as linhas
+				var lineList = new List<string>();
+				foreach (var line in lines)
+				{
+					resposta = lines[0];
+				}
+
+			}
+		}
+
+	}
+</textarea>
+<script>
+	setTimeout(() => {//'PuxarInfosAsync carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

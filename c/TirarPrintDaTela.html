@@ -1,0 +1,32 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static Bitmap TirarPrintDaTela()
+	{
+		// Captura a tela inteira
+		Rectangle screenBounds = Screen.PrimaryScreen.Bounds;
+		Bitmap screenshot = new Bitmap(screenBounds.Width, screenBounds.Height);
+
+		using (Graphics g = Graphics.FromImage(screenshot))
+		{
+			g.CopyFromScreen(screenBounds.Location, Point.Empty, screenBounds.Size);
+		}
+
+		return screenshot;
+	}
+</textarea>
+<script>
+	setTimeout(() => {//'TirarPrintDaTela carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

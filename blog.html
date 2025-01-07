@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Balde de Lixo</title>
+</head>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+
+	
+</style>
+
+<body>
+
+
+
+</body>
+
+<script>
+
+
+
+ 
+
+	
+
+
+
+	
+	//---------------------
+
+
+
+	
+
+
+
+
+	
+
+
+	document.getElementById('bt_buscar').addEventListener('click', () => {
+		const palavra = document.getElementById('buscar').value.toLowerCase()
+
+		const det = document.querySelectorAll('details')
+		det.forEach(e => {
+			e.remove()
+		});
+
+		//------------
+
+		menus.forEach(e => {
+			if (e[1].toLowerCase().includes(palavra)) {
+
+
+
+				const details = document.createElement('details')
+				const summary = document.createElement('summary')
+				const iframe = document.createElement('iframe')
+
+
+				summary.innerHTML = '<b style="background-color:' + cor + '">' + e[0] + '</b>&nbsp;&nbsp;&nbsp;&nbsp;' + e[1]
+				iframe.src = e[2]
+				details.innerHTML = '<br>'
+
+				details.appendChild(summary)
+				details.appendChild(iframe)
+				document.body.append(details)
+			}
+		});
+		//----------
+		const B = document.querySelectorAll('b')
+		B.forEach(e => {
+
+			definirCores(e.textContent)
+
+
+			e.style.backgroundColor = cor
+		});
+	})
+
+
+	
+
+	//pagina inicial
+	if (linguagem == '') {
+
+		const s = `
+		<div style="margin-left:3vw;color:white">
+			<h1>Olá!</h1><br>
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				Seja bem vindo(a) ao Balde de Lixo, meu depósito de códigos úteis/inúteis que vou reunindo ao longo do tempo, ou fazendo no dia-a-dia. e coloco aqui, pra quando precisar, obter eles facilmente.
+				<br>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				Eles estão divididos em categorias e linguagens, e inclue uma barra de pesquisa, pra facilitar na hora de procurar algo específico.
+				<br>
+				<br>
+				Sinta-se a vontade para usar qualquer informação desse depósito
+			</h4>
+		</div>
+		`
+		document.body.innerHTML += s
+	}
+</script>
+
+</html>

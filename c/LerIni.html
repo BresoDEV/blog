@@ -1,0 +1,82 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	using System;
+	using System.Collections.Generic;
+	using System.Runtime.InteropServices;
+	using System.Text;
+	
+	namespace ini
+	{
+	
+	
+		class Ini
+		{
+			[DllImport("kernel32")]
+			private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+			[DllImport("kernel32")]
+			private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+	
+			private string ArqIni;
+	
+			public Ini(string ini)
+			{
+				this.ArqIni = ".//" + ini;
+			}
+	
+	
+			public string LerIni(string session, string key)
+			{
+				StringBuilder a = new StringBuilder(255);
+				int i = GetPrivateProfileString(session, key, "", a, 255, ArqIni);
+				return a.ToString();
+			}
+	
+	
+			public void GravarIni(string session, string key, string valor)
+			{
+				WritePrivateProfileString(session, key, valor, ArqIni);
+	
+			}
+			public void DeletarSessaoIni(string session)
+			{
+				GravarIni(session, null, null);
+	
+			}
+			public void DeletarChaveIni(string session, string chave)
+			{
+				GravarIni(session, chave, null);
+	
+			}
+			public bool SessaoIniExiste(string session)
+			{
+				return LerIni(session, null).Length > 0;
+	
+			}
+	
+			public bool ChaveIniExiste(string session, string key)
+			{
+				return LerIni(session, key).Length > 0;
+	
+			}
+	
+			
+		}
+	}
+	
+</textarea>
+<script>
+	setTimeout(() => {//'LerIni carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

@@ -1,0 +1,33 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+    def joaat(k: str) ->str:
+        h = 0
+        for c in k:
+            h += ord(c)
+            h &= 0xFFFFFFFF
+            h += (h << 10)
+            h &= 0xFFFFFFFF
+            h ^= (h >> 6)
+        h += (h << 3)
+        h &= 0xFFFFFFFF
+        h ^= (h >> 11)
+        h += (h << 15)
+        h &= 0xFFFFFFFF
+        return f"{hex(h)}"
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

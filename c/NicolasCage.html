@@ -1,0 +1,49 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static void NicolasCage()
+    {
+        string imageUrl = "https://i.pinimg.com/originals/3b/11/f1/3b11f1e43e2ae230d743e64c84ef92a1.jpg";
+        try
+        {
+            // Baixe a imagem da web
+            using (WebClient client = new WebClient())
+            {
+                byte[] imageData = client.DownloadData(imageUrl);
+                // Carregue a imagem a partir dos dados baixados
+                using (MemoryStream stream = new MemoryStream(imageData))
+                {
+                    Image image = Image.FromStream(stream);
+                    // Crie um novo objeto Graphics para desenhar na tela
+                    using (Graphics graphics = Graphics.FromHwnd(IntPtr.Zero))
+                    {
+                        // Obtenha o tamanho da tela
+                        Rectangle screenBounds = Screen.PrimaryScreen.Bounds;
+                        // Defina a posição onde você deseja desenhar a imagem na tela
+                        int x = (screenBounds.Width - image.Width) / 2;
+                        int y = (screenBounds.Height - image.Height) / 2;
+                        Random rnd = new Random();
+                        int a = rnd.Next(50, 200);
+                        graphics.DrawImage(image, rnd.Next(0, 1000), rnd.Next(0, 1000), a, a);
+                    }
+                }
+            }
+        }
+        catch (Exception e) { }
+    }
+</textarea>
+<script>
+	setTimeout(() => {//'NicolasCage carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

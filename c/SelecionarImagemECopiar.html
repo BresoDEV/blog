@@ -1,0 +1,45 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	public static  bool SelecionarImagemECopiar(string diretorio)
+	{
+		string pdfPath = diretorio;
+
+		// Verifica se o arquivo existe
+		if (File.Exists(pdfPath))
+		{
+			try
+			{
+				// Carrega o conteúdo do arquivo em um byte array
+				MemoryStream imageStream = new MemoryStream(File.ReadAllBytes(pdfPath));
+
+				// Coloca a imagem na área de transferência
+				Clipboard.SetImage(System.Drawing.Image.FromStream(imageStream)); 
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+</textarea>
+<script>
+	setTimeout(() => {//'SelecionarImagemECopiar carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>
