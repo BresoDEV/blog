@@ -1,0 +1,45 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+
+Biscoito
+?  00 00 00 0F 00 00 00 00 00 00 00 ?  ?  ?  ?  00 00 00 00 ?  ?  00 00 ?  00 00 00 ?  00 00 00 00 00 00 00 ?  ? ? ? 00 00 00 00 00 
+
+Cocas
+? 00 00 00 0A 00 00 00 00 00 00 00 ? ? ? ? 00 00 00 00 2E 01 00 00 01 00 00 00 01
+
+
+Folhas 
+? ? 00 00 10 27 00 00 00 00 00 00 ? ? ? ? 00 00 00 00 31 00 00 00 01 00 00 00 05
+
+
+Gravetos
+? 00 00 00 0A 00 00 00 00 00 00 00 ? ? ? ? 00 00 00 00 35 00 00 00  
+
+Pedras
+? 00 00 00 05 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 68 00 
+
+Cocas:		Biscoito +A8  	 
+Folhas:		Biscoito +48  	 
+Gravetos:	Biscoito -48	 
+Pedras:		Biscoito -30 	 
+Boozer:		Biscoito +90
+Trapos: 	Biscoito +30
+Caveiras:       Biscoito -78
+Tartaruga: 	Biscoito -288
+</textarea>
+<script>
+	setTimeout(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>
