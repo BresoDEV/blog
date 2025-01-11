@@ -1,0 +1,64 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <sstream>
+#include <iomanip>
+
+uint32_t joaatHash(const std::string& input) {
+    uint32_t hash = 0;
+
+    for (char c : input) { 
+        c = std::tolower(static_cast<unsigned char>(c));
+        hash += static_cast<uint8_t>(c);
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
+
+    return hash;
+}
+
+std::string toUpperCase(const std::string& input) {
+    std::string result = input;
+    for (char& c : result) {
+        c = std::toupper(static_cast<unsigned char>(c));
+    }
+    return "0x"+result;
+}
+
+std::string hashToHex(uint32_t hash) {
+    std::stringstream ss;
+    ss << std::hex << std::setfill('0') << std::setw(8) << hash;
+   // return ss.str();
+    return toUpperCase(ss.str());
+}
+
+
+
+int main() { 
+    std::cout << "Hash JOAAT em hexadecimal: " << hashToHex(joaatHash("adder")) << std::endl;
+
+    return 0;
+}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>
