@@ -1,0 +1,70 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+std::string INIFilePath;//Exemplo no mesmo diretorio do EXE:   .\\ArquivoINI.ini
+
+
+
+
+void GravarString(std::string string, std::string app, std::string key)
+{
+	WritePrivateProfileStringA(app.c_str(), key.c_str(), string.c_str(), INIFilePath.c_str());
+}
+std::string LerString(std::string app, std::string key)
+{
+	char buf[100];
+	GetPrivateProfileStringA(app.c_str(), key.c_str(), "NULL", buf, 100, INIFilePath.c_str());
+	return (std::string)buf;
+}
+void GravarInt(int value, std::string app, std::string key)
+{
+	GravarString(std::to_string(value), app, key);
+}
+int LerInt(std::string app, std::string key)
+{
+	return std::stoi(LerString(app, key));
+}
+DWORD LerDword(std::string app, std::string key)
+{
+	return std::stoul(LerString(app, key));
+}
+void GravarFloat(float value, std::string app, std::string key)
+{
+	GravarString(std::to_string(value), app, key);
+}
+float LerFloat(std::string app, std::string key)
+{
+	return std::stof(LerString(app, key));
+}
+bool SessaoExiste(string Sessao)
+{
+	std::vector<std::string> TempVECTOR;
+	ifstream imput(INIFilePath);
+	string textolido;
+	for (string line; getline(imput, line);)
+		TempVECTOR.push_back(line);
+
+	for (int i = 0; i <= (TempVECTOR.size() - 1); i++)
+	{
+		if (TempVECTOR[i] == "[" + Sessao + "]")
+			return true;
+	}
+	imput.close();
+	return false;
+}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

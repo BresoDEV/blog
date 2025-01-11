@@ -10,7 +10,21 @@
 	}
 </style>
 <textarea id="t">
-
+vector<string> LerTXT_Separador(string arquivo, char separador = ',')
+{
+	std::ifstream file(arquivo);
+	std::string line;
+	std::vector<std::string> values;
+	while (std::getline(file, line)) {
+		std::istringstream iss(line);
+		std::string value;
+		while (std::getline(iss, value, separador)) {
+			values.push_back(value);
+		}
+	}
+	file.close();
+	return values;
+}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

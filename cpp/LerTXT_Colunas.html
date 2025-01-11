@@ -1,0 +1,41 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+vector<string> LerTXT_Colunas(string filename, int index, char separador = ',') {
+	//Index nao comeca do 0.
+	//Se quiser pegar o primeiro valor, usa-se 1, segundo 2, e assim por diante
+	  
+	ifstream file(filename);
+	vector<string> values;
+	string line, value;
+	int i = 0;
+	while (getline(file, line)) {
+		stringstream ss(line);
+		i = 0;
+		while (getline(ss, value, separador)) {
+			i++;
+			if (i == index) {
+				values.push_back(value);
+				break;
+			}
+		}
+	}
+	file.close();
+	return values;
+}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>
