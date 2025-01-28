@@ -1,0 +1,46 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	string Encriptografar(string text)
+	{
+		//Exemplo		Criptografia::Ceasar::Encriptografar("Eduardo Bresolin espert em C") 
+		string s = text;
+		string t;
+		std::transform(s.begin(), s.end(), s.begin(), ::toupper);
+		for (int i = 0; i < s.size(); i++)
+			t += (s[i] - 'A' + 3) % 26 + 'A';
+		return t;
+	}
+	string Descriptografar(string text, bool PrimeiraMaiuscula = true)
+	{
+		//Exemplo		Criptografia::Ceasar::Descriptografar("HGXDUGR=EUHVROLQ=HVSHUW=HP=F") 
+		string s = text;
+		string t;
+		for (int i = 0; i < s.size(); i++)
+		{
+			if (s[i] == '=')
+				t += ' ';
+			else
+				t += (s[i] - 'A' - 3 + 26) % 26 + 'A';
+		}
+		if (PrimeiraMaiuscula)
+			for (int i = 1; i <= t.size(); i++)
+				t[i] = tolower(t[i]);
+		return t;
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

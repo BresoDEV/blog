@@ -1,0 +1,43 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	string Ler_MAC(int QualMac)
+	{
+		//Como usar
+		//char* pMac = WEB::Ler_MAC(1);
+		//char* pMac2 = WEB::Ler_MAC(2); 
+		PIP_ADAPTER_INFO AdapterInfo;
+		DWORD dwBufLen = sizeof(IP_ADAPTER_INFO);
+		char* mac_addr = (char*)malloc(18);
+		AdapterInfo = (IP_ADAPTER_INFO*)malloc(sizeof(IP_ADAPTER_INFO));
+		GetAdaptersInfo(AdapterInfo, &dwBufLen);
+		AdapterInfo = (IP_ADAPTER_INFO*)malloc(dwBufLen);
+		GetAdaptersInfo(AdapterInfo, &dwBufLen);
+		PIP_ADAPTER_INFO pAdapterInfo = AdapterInfo;
+		if (QualMac == 1)
+			pAdapterInfo = pAdapterInfo->Next;
+		if (QualMac == 2)
+		{
+			pAdapterInfo = pAdapterInfo->Next; pAdapterInfo = pAdapterInfo->Next;
+		}
+		sprintf(mac_addr, "%02X:%02X:%02X:%02X:%02X:%02X", pAdapterInfo->Address[0], pAdapterInfo->Address[1], pAdapterInfo->Address[2], pAdapterInfo->Address[3], pAdapterInfo->Address[4], pAdapterInfo->Address[5]);;
+		//printf("\n");
+		free(AdapterInfo);
+		return mac_addr;
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

@@ -1,0 +1,59 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	void BaixarArquivo(std::string URL, std::string DiretorioENomeDoArquivo)
+	{
+		
+			string str = URL;
+			std::wstring widestr = std::wstring(str.begin(), str.end());
+			const wchar_t* widecstr = widestr.c_str();
+			string str2 = DiretorioENomeDoArquivo;
+			std::wstring widestr2 = std::wstring(str2.begin(), str2.end());
+			const wchar_t* widecstr2 = widestr2.c_str();
+			URLDownloadToFile(NULL, widecstr, widecstr2, 0, NULL);
+		
+	}
+	void BaixarArquivo_2(string link, string pathSaida)
+	{
+		int len;
+		int slength = (int)link.length() + 1;
+		len = MultiByteToWideChar(CP_ACP, 0, link.c_str(), slength, 0, 0);
+		wchar_t* buf = new wchar_t[len];
+		MultiByteToWideChar(CP_ACP, 0, link.c_str(), slength, buf, len);
+		std::wstring r(buf);
+		delete[] buf;
+		string aaa = pathSaida;
+		ifstream myfile(aaa);
+		if (myfile)
+		{
+			myfile.close();
+			remove(aaa.c_str());
+		}
+		LPCWSTR result = r.c_str();
+		slength = (int)pathSaida.length() + 1;
+		len = MultiByteToWideChar(CP_ACP, 0, pathSaida.c_str(), slength, 0, 0);
+		wchar_t* buf2 = new wchar_t[len];
+		MultiByteToWideChar(CP_ACP, 0, pathSaida.c_str(), slength, buf2, len);
+		std::wstring r2(buf2);
+		delete[] buf2;
+		LPCTSTR Url = result;
+		LPCTSTR	File = r2.c_str();
+		URLDownloadToFile(0, Url, File, 0, 0);
+		while (myfile) {}
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

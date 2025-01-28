@@ -61,6 +61,44 @@ bool SessaoExiste(string Sessao)
 	imput.close();
 	return false;
 }
+
+void ExcluirSessaoToda(string Sessao)
+		{
+			//Exemplo:
+			// 	   ExcluirSessaoToda("oi");
+			//[oi] <-- exclue tudo oque tem dentro dessa chave
+			//texto=abc   
+			WritePrivateProfileStringA(Sessao.c_str(), NULL, "", INIFilePath.c_str());
+		}
+
+		void ExcluirParametro(string Sessao, string parametro)
+		{
+			//Exemplo:
+			// 	   ExcluirParemtro("oi", "texto");
+			//[oi]
+			//texto=abc  <-- exclue esse so 
+			WritePrivateProfileStringA(Sessao.c_str(), parametro.c_str(), NULL, INIFilePath.c_str());
+		}
+		bool ParametroExiste(string Sessao, string parametro)
+		{
+			char buf[100];
+			int a = GetPrivateProfileStringA(Sessao.c_str(), parametro.c_str(), 0, buf, 100, INIFilePath.c_str());
+			if (a == 0)
+				return false;
+			else
+				return true;
+		}
+		bool ParametroVAZIO(string Sessao, string parametro)
+		{
+			char buf[100];
+			if (ParametroExiste(Sessao, parametro))
+			{
+				GetPrivateProfileStringA(Sessao.c_str(), parametro.c_str(), "", buf, 100, INIFilePath.c_str());
+				if (buf == "") return true;
+				else return false;
+			}
+			else return true;
+		}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

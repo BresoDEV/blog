@@ -1,0 +1,453 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	namespace Conversoes
+	{
+		namespace ConstChar
+		{
+			string toString(const char* palavra)
+			{
+				string s(palavra);
+				return s;
+			}
+
+			char* toChar(const char* palavra)
+			{
+				char* oi = strdup(palavra);
+				return oi;
+			}
+
+			int toInt(const char* palavra)
+			{
+				stringstream valor;
+				valor << palavra;
+				int a;
+				valor >> a;
+				return a;
+			}
+
+			float toFloat(const char* palavra)
+			{
+				string fs(palavra);
+				return stof(fs);
+			}
+
+		}
+
+		namespace Int
+		{
+
+
+			string toString(int valor)
+			{
+				return std::to_string(valor);
+			}
+		}
+
+		namespace __INT64
+		{
+			bool toBool(__int64 valor)
+			{
+				bool vOut = valor != 0;
+				return vOut;
+			}
+
+			char toChar(__int64 valor)
+			{
+				return (char)valor;
+			}
+
+			char* toCharP(__int64 valor)
+			{
+				__int64 vIn = valor;
+				char vOut[21];
+				_i64toa_s(vIn, vOut, sizeof(vOut), 10);
+				return vOut;
+			}
+			double toDouble(__int64 valor)
+			{
+				return (double)valor;
+			}
+			float toFloat(__int64 valor)
+			{
+				return (float)valor;
+			}
+			int toInt(__int64 valor)
+			{
+				return (int)valor;
+			}
+			short toShort(__int64 valor)
+			{
+				return (short)valor;
+			}
+			long toLong(__int64 valor)
+			{
+				return (long)valor;
+			}
+			unsigned __int64 toUnsigned__int64(__int64 valor)
+			{
+				return  (unsigned __int64)valor;
+			}
+			unsigned char toUnsigned_char(__int64 valor)
+			{
+				return  (unsigned char)valor;
+			}
+			unsigned int toUnsigned_int(__int64 valor)
+			{
+				return (unsigned int)valor;
+			}
+			unsigned long toUnsigned_long(__int64 valor)
+			{
+				return (unsigned long)valor;
+			}
+			unsigned short toUnsigned_short(__int64 valor)
+			{
+				return (unsigned short)valor;
+			}
+			wchar_t toWchar_t(__int64 valor)
+			{
+				return (wchar_t)valor;
+			}
+			wchar_t* toWchar_tP(__int64 valor)
+			{
+				__int64 vIn = valor;
+				wchar_t vOut[21];
+				_i64tow_s(vIn, vOut, sizeof(vOut) / 2, 10);
+				return vOut;
+			}
+		}
+
+		namespace Bool
+		{
+			__int64 to__Int64(bool valor)
+			{
+				bool vIn = valor;
+				__int64 vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			char toChar(bool valor)
+			{
+				bool vIn = valor;
+				char vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			char* toCharP(bool valor)
+			{
+				const char* a;
+				if (valor)
+					a = "true";
+				else
+					a = "false";
+				return (char*)a;
+			}
+			double toDouble(bool valor)
+			{
+				bool vIn = valor;
+				double vOut = vIn ? 1.0 : 0.0;
+				return vOut;
+			}
+			float tofloat(bool valor)
+			{
+				bool vIn = valor;
+				float vOut = vIn ? 1.0f : 0.0f;
+				return vOut;
+			}
+			int toInt(bool valor)
+			{
+				bool vIn = valor;
+				int vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			long toLong(bool valor)
+			{
+				bool vIn = valor;
+				long vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			short toShort(bool valor)
+			{
+				bool vIn = valor;
+				short vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			unsigned __int64 toUnsigned__int64(bool valor)
+			{
+				bool vIn = valor;
+				unsigned __int64 vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			unsigned char toUnsigned_char(bool valor)
+			{
+				bool vIn = valor;
+				unsigned char vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			unsigned int toUnsigned_int(bool valor)
+			{
+				bool vIn = valor;
+				unsigned int vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			unsigned long toUnsigned_long(bool valor)
+			{
+				bool vIn = valor;
+				unsigned long vOut = vIn ? 1 : 0;
+
+				return vOut;
+			}
+			unsigned short toUnsigned_short(bool valor)
+			{
+				bool vIn = valor;
+				unsigned short vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			wchar_t toWchar_t(bool valor)
+			{
+				bool vIn = valor;
+				wchar_t vOut = vIn ? 1 : 0;
+				return vOut;
+			}
+			const char* toConstChar(bool valor)
+			{
+				if (valor)
+					return "true";
+				else
+					return "false";
+			}
+
+			string toString(bool valor)
+			{
+				if (valor)
+					return "true";
+				else
+					return "false";
+			}
+
+		}
+
+		namespace Char
+		{
+			__int64 to___int64(char valor)
+			{
+				return (__int64)valor;
+			}
+
+			bool toBool(char valor)
+			{
+				char vIn = valor;
+				bool vOut = vIn != 0;
+				return vOut;
+			}
+
+			char* toCharP(char valor)
+			{
+				char vIn = valor;
+				char vOut[2] = { vIn,0 };
+				return vOut;
+			}
+
+			double toDouble(char valor)
+			{
+				return (double)valor;
+			}
+			float toFloat(char valor)
+			{
+				return (float)valor;
+			}
+			int toInt(char valor)
+			{
+				return (int)valor;
+			}
+			long toLong(char valor)
+			{
+				return (long)valor;
+			}
+			short toShort(char valor)
+			{
+				return (short)valor;;
+			}
+			unsigned __int64 toUnsigned__int64(char valor)
+			{
+				return (unsigned __int64)valor;
+			}
+			unsigned char toUnsigned_char(char valor)
+			{
+				return (unsigned char)valor;
+			}
+			unsigned int toUnsigned_int(char valor)
+			{
+				return (unsigned int)valor;
+			}
+			unsigned long toUnsigned_long(char valor)
+			{
+				return (unsigned long)valor;
+			}
+			unsigned short toUnsigned_short(char valor)
+			{
+				return (unsigned short)valor;
+			}
+			wchar_t toWchar_t(char valor)
+			{
+				return (wchar_t)valor;
+			}
+			wchar_t* toWchar_tP(char valor)
+			{
+				char vIn = valor;
+				wchar_t vOut[5];
+				_itow_s(vIn, vOut, (sizeof(vOut) / 2), 10);
+				return vOut;
+			}
+		}
+
+		namespace CharP
+		{
+			__int64 to__int64(char* valor)
+			{
+				return _atoi64(valor);
+			}
+			bool toBool(char* valor)
+			{
+				return valor && stricmp(valor, "true") == 0;;
+			}
+			char toChar(char* valor)
+			{
+				return (char)atoi(valor);;
+			}
+			double toDouble(char* valor)
+			{
+				return strtod(valor, NULL);;
+			}
+			int toInt(char* valor)
+			{
+				return atoi(valor);;
+			}
+			float toFloat(char* valor)
+			{
+				return (float)strtod(valor, NULL);;
+			}
+			long toLong(char* vIn)
+			{
+				return strtol(vIn, NULL, 10);;
+			}
+			short to(char* vIn)
+			{
+				return (short)atoi(vIn);
+			}
+			unsigned __int64 toUnsigned__int64(char* vIn)
+			{
+				return _strtoui64(vIn, NULL, 10);
+			}
+			unsigned char toUnsigned_char(char* vIn)
+			{
+				return (unsigned char)strtol(vIn, NULL, 10);
+			}
+			unsigned int toUnsigned_int(char* vIn)
+			{
+				return strtoul(vIn, NULL, 10);
+			}
+			unsigned long toUnsigned_long(char* vIn)
+			{
+				return strtoul(vIn, NULL, 10);;
+			}
+		}
+
+		namespace Double
+		{
+			__int64 to__int64(double vIn)
+			{
+				return (__int64)vIn;
+			}
+
+			bool to_bool(double vIn)
+			{
+				return vIn != 0.0;
+			}
+
+			char to_char(double vIn)
+			{
+				return (char)vIn;;
+			}
+
+			char* to_CharP(double vIn)
+			{
+				char vOut[26];
+				_gcvt_s(vOut, sizeof(vOut), vIn, 17);
+				return vOut;
+			}
+
+			float to_float(double vIn)
+			{
+				return (float)vIn;
+			}
+
+			int to_int(double vIn)
+			{
+				return (int)vIn;
+			}
+
+			long to_long(double vIn)
+			{
+				return (long)vIn;
+			}
+
+			short to_short(double vIn)
+			{
+				return (short)vIn;
+			}
+
+			unsigned __int64 to_unsigned__int64(double vIn)
+			{
+				return (unsigned __int64)vIn;
+			}
+
+			unsigned char to_unsigned_char(double vIn)
+			{
+				return (unsigned char)vIn;
+			}
+
+			unsigned int to_unsigned_int(double vIn)
+			{
+				return (unsigned int)vIn;
+			}
+
+			unsigned long to_unsigned_long(double vIn)
+			{
+				return (unsigned long)vIn;
+			}
+
+			unsigned short to_unsigned_short(double vIn)
+			{
+				return (unsigned short)vIn;
+			}
+
+			wchar_t to_wchar_t(double vIn)
+			{
+				return (wchar_t)vIn;
+			}
+
+			wchar_t* to_wchar_tP(double vIn)
+			{
+				char vOutChar[26];
+				_gcvt_s(vOutChar, sizeof(vOutChar), vIn, 17);
+				wchar_t vOut[26];
+				mbstowcs_s(NULL, vOut, sizeof(vOut) / 2, vOutChar, sizeof(vOutChar));
+				return vOut;
+			}
+		}
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

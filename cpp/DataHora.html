@@ -1,0 +1,141 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	namespace DataHora
+	{
+		namespace INT
+		{
+			int Ano()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				return (now->tm_year + 1900);
+			}
+			int Mes()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				return (now->tm_mon + 1);
+			}
+			int Dia()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				return (now->tm_mday);
+			}
+			int Hora()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				return current_tm.tm_hour;
+			}
+			int Minutos()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				return current_tm.tm_min;
+			}
+			int Segundos()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				return current_tm.tm_sec;
+			}
+		}
+		namespace STRING
+		{
+			string Hora()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", current_tm.tm_hour);
+				return szTimestamp;
+			}
+			string Minutos()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", current_tm.tm_min);
+				return szTimestamp;
+			}
+			string Segundos()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", current_tm.tm_sec);
+				return szTimestamp;
+			}
+			string HorarioCompleto()
+			{
+				struct tm current_tm;
+				char chLogBuff[5000];
+				char chParameters[5000];
+				time_t current_time = time(NULL);
+				localtime_s(&current_tm, &current_time);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d:%02d:%02d", current_tm.tm_hour, current_tm.tm_min, current_tm.tm_sec);
+				return szTimestamp;
+			}
+			string Ano()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", (now->tm_year + 1900));
+				return szTimestamp;
+			}
+			string Mes()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", (now->tm_mon + 1));
+				return szTimestamp;
+			}
+			string Dia()
+			{
+				time_t t = time(0);
+				std::tm* now = localtime(&t);
+				char szTimestamp[30];
+				sprintf_s(szTimestamp, "%02d", (now->tm_mday));
+				return szTimestamp;
+			}
+		}
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

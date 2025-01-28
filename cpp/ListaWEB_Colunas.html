@@ -1,0 +1,79 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	std::vector<std::vector<std::string>> ListaWEB_Colunas(const char* Link_Lista, int ItensPorLinha, char separador = ',')
+		{
+			/*
+			Como usar:
+			vector<vector<string>>  Listaqeb = ListaWEB_Colunas("https://pastebin.com/raw/hzfCJ37F", 3, ',');
+			// Exibe os itens das colunas
+			for (int i = 0; i < Listaqeb.size(); i++)
+			{
+					std::cout << Listaqeb[i][1] << endl;//No lugar do 1, vai o index do item na linha, iniciando no ZERO
+
+			}
+			*/
+			IStream* stream;
+			const char* URL = Link_Lista;
+			URLOpenBlockingStreamA(0, URL, &stream, 0, 0);
+			char buff[100];
+			string s;
+			unsigned long bytesRead;
+			while (true) {
+				stream->Read(buff, 100, &bytesRead);
+				if (0U == bytesRead) {
+					break;
+				}
+				s.append(buff, bytesRead);
+			};
+			stream->Release();
+			string str = s;//tudo misturado em uma unica linha, com tags html se tiver
+
+			str.erase(std::remove(str.begin(), str.end(), '\r'), str.end());
+			str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+			str.erase(std::remove(str.begin(), str.end(), '<br>'), str.end());
+
+			std::vector<std::string> vec;
+			std::stringstream ss1(str);
+			std::string token;
+			while (std::getline(ss1, token, separador))
+			{
+				vec.push_back(token);
+			}
+
+			int numColunas = (vec.size() - 1) / ItensPorLinha;
+
+			std::vector<std::vector<std::string>> colunas(numColunas, std::vector<std::string>(ItensPorLinha));
+			std::stringstream ss(str);
+			std::string item;
+			int coluna_atual = 0;
+			int item_atual = 0;
+			while (std::getline(ss, item, separador)) {
+				colunas[coluna_atual][item_atual] = item;
+				item_atual++;
+				if (item_atual == ItensPorLinha) {
+					coluna_atual++;
+					item_atual = 0;
+					if (coluna_atual == numColunas) {
+						break;
+					}
+				}
+			}
+			return colunas;
+		}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

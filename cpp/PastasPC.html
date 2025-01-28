@@ -1,0 +1,63 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	namespace PastasPC
+	{
+		std::string AppData()
+		{
+			PWSTR appdata = NULL;
+			if (SHGetKnownFolderPath(FOLDERID_RoamingAppData, KF_FLAG_CREATE, NULL, &appdata) == S_OK) {
+				char dest[MAX_PATH];
+				wcstombs(dest, appdata, MAX_PATH);
+				return dest;
+			}
+		}
+		std::string Documentos()
+		{
+			static char env[256];
+			const DWORD ret = GetEnvironmentVariableA("USERPROFILE", env, 256);
+			std::string path = "\\Documents\\";
+			std::string pastaDOc = env + path;
+			return pastaDOc;
+		}
+		std::string Imagens()
+		{
+			static char env[256];
+			const DWORD ret = GetEnvironmentVariableA("USERPROFILE", env, 256);
+			std::string path = "\\Pictures\\";
+			std::string pastaDOc = env + path;
+			return pastaDOc;
+		}
+		std::string Downloads()
+		{
+			static char env[256];
+			const DWORD ret = GetEnvironmentVariableA("USERPROFILE", env, 256);
+			std::string path = "\\Downloads\\";
+			std::string pastaDOc = env + path;
+			return pastaDOc;
+		}
+		std::string Videos()
+		{
+			static char env[256];
+			const DWORD ret = GetEnvironmentVariableA("USERPROFILE", env, 256);
+			std::string path = "\\Videos\\";
+			std::string pastaDOc = env + path;
+			return pastaDOc;
+		}
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

@@ -6,16 +6,18 @@
 		padding: 5px;
 		background-color: rgb(65, 64, 64);
 		color: aliceblue;
- 
+
 	}
 </style>
 <textarea id="t">
-Baterias:
-?? 00 00 00 08 00 00 00 ?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 80 3E 00 00 00 00 
-
-Bandagens: (Bateria +8)
-?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 
-
+	std::string SubstituirPalavra(std::string str, const std::string& from, const std::string& to) {
+		size_t start_pos = 0;
+		while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+			str.replace(start_pos, from.length(), to);
+			start_pos += to.length();
+		}
+		return str;
+	}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

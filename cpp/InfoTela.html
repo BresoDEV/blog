@@ -1,0 +1,56 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	int Tela_X()
+	{
+		return GetSystemMetrics(SM_CXSCREEN);
+	}
+	int Tela_Y()
+	{
+		return GetSystemMetrics(SM_CYSCREEN);
+	}
+	 
+	int GetResolucao_X()
+	{
+		RECT desktop;
+		const HWND hDesktop = GetDesktopWindow();
+		GetWindowRect(hDesktop, &desktop);
+		return desktop.right;
+	}
+	int GetResolucao_Y()
+	{
+		RECT desktop;
+		const HWND hDesktop = GetDesktopWindow();
+		GetWindowRect(hDesktop, &desktop);
+		return desktop.bottom;
+	}
+	int Get_X_Centro_da_Tela()
+	{
+		RECT desktop;
+		const HWND hDesktop = GetDesktopWindow();
+		GetWindowRect(hDesktop, &desktop);
+		return desktop.right / 2;
+	}
+	int Get_Y_Centro_da_Tela()
+	{
+		RECT desktop;
+		const HWND hDesktop = GetDesktopWindow();
+		GetWindowRect(hDesktop, &desktop);
+		return desktop.bottom / 2;
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

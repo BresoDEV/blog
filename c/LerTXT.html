@@ -6,16 +6,23 @@
 		padding: 5px;
 		background-color: rgb(65, 64, 64);
 		color: aliceblue;
- 
+
 	}
 </style>
 <textarea id="t">
-Baterias:
-?? 00 00 00 08 00 00 00 ?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 80 3E 00 00 00 00 
-
-Bandagens: (Bateria +8)
-?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 
-
+	static List<string> LerTXT(string arquivo)
+        {
+            List<string> lista= new List<string>();
+            using (StreamReader sr = new StreamReader(arquivo))
+            {
+                string linha;
+               while((linha = sr.ReadLine())!=null)
+                {
+                    lista.Add(linha);   
+                }
+            }
+            return lista;
+        }
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

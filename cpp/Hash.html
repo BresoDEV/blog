@@ -6,16 +6,15 @@
 		padding: 5px;
 		background-color: rgb(65, 64, 64);
 		color: aliceblue;
- 
+
 	}
 </style>
 <textarea id="t">
-Baterias:
-?? 00 00 00 08 00 00 00 ?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 80 3E 00 00 00 00 
-
-Bandagens: (Bateria +8)
-?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 
-
+	//Irreversivel, nao tem como converter um hash pra string
+	std::string Hash(string A)
+	{
+		return to_string(std::hash<std::string>{}(A));
+	}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

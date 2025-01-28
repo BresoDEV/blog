@@ -6,16 +6,20 @@
 		padding: 5px;
 		background-color: rgb(65, 64, 64);
 		color: aliceblue;
- 
+
 	}
 </style>
 <textarea id="t">
-Baterias:
-?? 00 00 00 08 00 00 00 ?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 80 3E 00 00 00 00 
-
-Bandagens: (Bateria +8)
-?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 
-
+	std::string InverterPalavra(const std::string& str) {
+		std::istringstream iss(str);
+		std::ostringstream oss;
+		std::string current_word;
+		while (iss >> current_word) {
+			std::reverse(current_word.begin(), current_word.end());
+			oss << current_word << " ";
+		}
+		return oss.str();
+	}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

@@ -6,16 +6,20 @@
 		padding: 5px;
 		background-color: rgb(65, 64, 64);
 		color: aliceblue;
- 
+
 	}
 </style>
 <textarea id="t">
-Baterias:
-?? 00 00 00 08 00 00 00 ?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 80 3E 00 00 00 00 
-
-Bandagens: (Bateria +8)
-?? 00 00 00 03 00 00 00 08 00 00 00 08 00 00 00 08 00 00 00 03 00 00 00 03 00 00 00 03 00 00 00 01 00 00 00 9A 99 19 3E 00 00 00 00 00 00 
-
+	void Clicar_Mouse()
+	{
+		INPUT input = { 0 };
+		input.type = INPUT_MOUSE;
+		input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+		SendInput(1, &input, sizeof(INPUT));
+		Sleep(500);
+		input.mi.dwFlags = MOUSEEVENTF_LEFTUP;
+		SendInput(1, &input, sizeof(INPUT));
+	}
 </textarea>
 <script>
 	setInterval(() => {//'--------- carregou')

@@ -1,0 +1,37 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	static List<string> LerTXTColunas(string arquivo, int item, char separador = ',')//1 =primeiro item da linha
+        {
+            List<string> lista = new List<string>();
+            using (StreamReader sr = new StreamReader(arquivo))
+            {
+                string linha;
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    string[] il =linha.Split(separador);
+                    if(item >=1 && item<=il.Length)
+                    {
+                        string id = il[item -1];
+                        lista.Add(id);
+                    }
+                }
+            }
+            return lista;
+        }
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

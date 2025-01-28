@@ -1,0 +1,57 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	vector<string> ListaWEB(const char* Link_Lista, char separador = ',')
+		{
+			/*
+			Como usar:
+			vector<string> Lista_HASH = ListaWEB("https://pastebin.com/raw/WwvvCpGG");
+			for (int i = 0; i <= (Lista_HASH.size() - 2); i++)
+			{
+				cout << Lista_HASH[i] << endl;;
+			}
+			*/
+			IStream* stream;
+			const char* URL = Link_Lista;
+			URLOpenBlockingStreamA(0, URL, &stream, 0, 0);
+			char buff[100];
+			string s;
+			unsigned long bytesRead;
+			while (true) {
+				stream->Read(buff, 100, &bytesRead);
+				if (0U == bytesRead) {
+					break;
+				}
+				s.append(buff, bytesRead);
+			};
+			stream->Release();
+			string str = s;//tudo misturado em uma unica linha, com tags html se tiver
+
+			str.erase(std::remove(str.begin(), str.end(), '\r'), str.end());
+			str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+			str.erase(std::remove(str.begin(), str.end(), '<br>'), str.end());
+			std::vector<std::string> vec;
+			std::stringstream ss(str);
+			std::string token;
+			while (std::getline(ss, token, separador))
+			{
+				vec.push_back(token);
+			}
+			return vec;
+		}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>

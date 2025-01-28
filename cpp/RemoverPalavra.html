@@ -1,0 +1,35 @@
+<style>
+	textarea {
+		resize: none;
+		width: 100%;
+		border-radius: 5px;
+		padding: 5px;
+		background-color: rgb(65, 64, 64);
+		color: aliceblue;
+
+	}
+</style>
+<textarea id="t">
+	std::string RemoverPalavra(const std::string& str, const std::string& word) {
+		//Remove somente se a palavra for passada por completo.
+		//Nao remove parte da palavra
+		//Exemplo: 
+		//RemoverPalavra("Eduardo Bresolin", "Bresolin") -> Exibe só Eduardo
+		//RemoverPalavra("Eduardo Bresolin", "Bres") -> Exibe Eduardo Bresolin (nao remove nada)
+		std::istringstream iss(str);
+		std::ostringstream oss;
+		std::string current_word;
+		while (iss >> current_word) {
+			if (current_word != word) {
+				oss << current_word << " ";
+			}
+		}
+		return oss.str();
+	}
+</textarea>
+<script>
+	setInterval(() => {//'--------- carregou')
+		document.getElementById('t').style.height = 'auto'
+		document.getElementById('t').style.height = (document.getElementById('t').scrollHeight+20) + 'px'
+	}, 1000);
+</script>
